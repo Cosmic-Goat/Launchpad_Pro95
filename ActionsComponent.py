@@ -18,6 +18,7 @@ class ActionsComponent(ControlSurfaceComponent):
 	redo_button = ButtonControl(color='Misc.Shift', pressed_color='Misc.ShiftOn', disabled_color='DefaultButton.Disabled')
 	tap_button = ButtonControl(color='Misc.Shift', pressed_color='Misc.ShiftOn', disabled_color='DefaultButton.Disabled')
 	quantization_on_button = ToggleButtonControl(untoggled_color='Misc.Shift', toggled_color='Misc.ShiftOn')
+	play_toggle = ToggleButtonControl(untoggled_color='TrackController.Play.Off', toggled_color='TrackController.Play.On')
 
 	def __init__(self, *a, **k):
 		self.suppressing_control_notifications = BooleanContext()
@@ -25,7 +26,17 @@ class ActionsComponent(ControlSurfaceComponent):
 		self._record_quantization = RecordingQuantization.rec_q_sixtenth
 		self._on_record_quantization_changed_in_live.subject = self.song()
 		self._on_record_quantization_changed_in_live()
+		self._on_is_playing_changed.subject = self.song()
+		self._on_is_playing_changed()
 		self._metronome_toggle = ToggleComponent('metronome', self.song())
+
+ 	@subject_slot('is_playing')
+	def _on_is_playing_changed(self):
+		self.play_toggle.is_toggled = self.song().is_playing
+
+	@play_toggle.toggled
+	def play_toggle(self, is_toggled, button):
+		self.song().is_playing = is_toggled
 
 	def control_notifications_enabled(self):
 		return self.is_enabled() and not self.suppressing_control_notifications
@@ -37,7 +48,7 @@ class ActionsComponent(ControlSurfaceComponent):
 	@tap_button.pressed
 	def tap_button(self, button):
 		self.song().tap_tempo()
-			
+
 	@undo_button.pressed
 	def undo_button(self, button):
 		if self.song().can_undo:
@@ -45,7 +56,7 @@ class ActionsComponent(ControlSurfaceComponent):
 
 	@duplicate_button.released
 	def duplicate_button(self, button):
-                self.canonical_parent._copied_slot = None
+		self.canonical_parent._copied_slot = None
 
 	@redo_button.pressed
 	def redo_button(self, button):

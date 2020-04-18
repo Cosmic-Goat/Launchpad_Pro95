@@ -3,7 +3,7 @@ from .Colors import Rgb
 from _Framework.ButtonElement import Color
 
 class Colors:
-	
+
 	class DefaultButton:
 		On = Rgb.GREEN
 		Off = Rgb.GREEN_HALF
@@ -65,7 +65,7 @@ class Colors:
 		UserMode = Rgb.DARK_BLUE
 		Shift = Rgb.DARK_GREY
 		ShiftOn = Rgb.WHITE
-		
+
 	class Session:
 		#scene
 		SceneTriggered = Rgb.GREEN_BLINK
@@ -146,7 +146,7 @@ class Colors:
 		class Toggle:
 			On = Rgb.RED
 			Off = Rgb.RED_HALF
-	
+
 	class StepSequencer:
 		class Scale:
 			On = Rgb.RED
@@ -196,7 +196,7 @@ class Colors:
 			Metronome = Rgb.BLUE
 			NoteMarker = Rgb.AMBER
 			PageMarker = Rgb.YELLOW
-				
+
 	class StepSequencer2:
 		class Pitch:
 			On = Rgb.DARK_BLUE
@@ -222,12 +222,12 @@ class Colors:
 			MetronomeInOtherPage = Rgb.BLUE_HALF
 			PlayInPage = Rgb.RED
 			PlayInOtherPage = Rgb.RED_HALF
-			
+
 	class Recording:
 		On = Rgb.RED
 		Off = Rgb.RED_HALF
 		Transition = Rgb.RED_BLINK
-		
+
 	class TrackController:
 		class Recording:
 			On = Rgb.RED
@@ -236,8 +236,9 @@ class Colors:
 			On = Rgb.RED
 			Off = Rgb.RED_HALF
 		class Play:
-			On = Rgb.RED
-			Off = Rgb.RED_HALF
+			On = Rgb.GREEN_PULSE
+			Off = Rgb.GREEN_HALF
+
 		class Stop:
 			On = Rgb.RED
 			Off = Rgb.RED_HALF
@@ -250,7 +251,7 @@ class Colors:
 		class Solo:
 			On = Rgb.AMBER
 			Off = Rgb.AMBER_HALF
-				
+
 	class DrumGroup:
 		PadEmpty = Rgb.BLACK
 		PadFilled = Rgb.YELLOW
@@ -268,7 +269,7 @@ class Colors:
 		class Solo:
 			On = Rgb.BLUE
 			Off = Rgb.DARK_BLUE
-			
+
 	class Note:
 		FeedbackRecord = Rgb.RED
 		Feedback = Rgb.GREEN
@@ -284,7 +285,7 @@ class Colors:
 			Highlight = Rgb.LIGHT_BLUE
 			OutOfScale = Rgb.DARK_GREY
 			Invalid = Rgb.BLACK
-					
+
 	class Scale:#scale edition
 		class AbsoluteRoot:
 			On = Rgb.RED
@@ -292,7 +293,7 @@ class Colors:
 		class Mode:
 			On = Rgb.RED
 			Off = Rgb.RED_HALF
-		class Key:		
+		class Key:
 			On = Rgb.GREEN
 			Off = Rgb.GREEN_HALF
 		CircleOfFifths = Rgb.BLUE
@@ -306,7 +307,7 @@ class Colors:
 		class QuickScale:
 			On = Rgb.AMBER
 			Off = Rgb.AMBER_HALF
-		
+
 	class QuickScale:#quick scale on top of instrument mode
 		class Modus:
 			On = Rgb.AMBER
@@ -332,7 +333,7 @@ class Colors:
 			CircleOfFifths = Rgb.RED
 			RelativeScale = Rgb.RED
 			Mode = Rgb.GREEN
-		
+
 
 def make_skin():
 	return Skin(Colors)

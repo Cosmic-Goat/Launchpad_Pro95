@@ -153,6 +153,9 @@ class MidiMap(SpecialMidiMap):
 
 	def with_shift(self, button_name):
 		return ComboElement(self[button_name], modifiers=[self['Shift_Button']], name='Shifted_' + button_name)
+	
+	def without_shift(self, button_name):
+		return ComboElement(self[button_name], negative_modifiers=[self['Shift_Button']], name='Unshifted_' + button_name)
 
 	def with_session_button(self, button):
 		return ComboElement(button, modifiers=[self['Session_Mode_Button']], name=button.name + '_With_Session_Button')
@@ -218,7 +221,7 @@ class Launchpad_Pro95(IdentifiableControlSurface, OptimizedControlSurface):
 				delete_button=self._midimap.with_shift('Delete_Button'),
 				duplicate_button=self._midimap.with_shift('Duplicate_Button'),
 				double_button=self._midimap.with_shift('Double_Loop_Button'),
-				session_record_button=self._midimap.with_shift('Session_Record_Button')
+				# session_record_button=self._midimap.with_shift('Session_Record_Button')
 			)
 		)
 
@@ -232,7 +235,8 @@ class Launchpad_Pro95(IdentifiableControlSurface, OptimizedControlSurface):
 				metronome_button=self._midimap['Click_Button'],
 				tap_button=self._midimap.with_shift('Click_Button'),
 				quantization_on_button=self._midimap.with_shift('Quantize_Button'),
-				duplicate_button=self._midimap['Duplicate_Button']
+				duplicate_button=self._midimap['Duplicate_Button'],
+				play_button=self._midimap.with_shift('Session_Record_Button')
 			)
 		)
 
@@ -283,7 +287,7 @@ class Launchpad_Pro95(IdentifiableControlSurface, OptimizedControlSurface):
 			name='Session_Recording',
 			is_enabled=False, 
 			layer=Layer(
-				record_button=self._midimap['Session_Record_Button']
+				record_button=self._midimap.without_shift('Session_Record_Button')
 			)
 		)
 
